@@ -3,6 +3,7 @@ const idMsgEl = document.getElementById('id-msg')
 const pwEl = document.getElementById('pw')
 const pwMsgEl = document.getElementById('pw-msg')
 const pwCheckEl = document.getElementById('pw-check')
+const pwCheckMsgEl = document.getElementById('pw-check-msg')
 
 const setFocus = (el) => {
     el.focus()
@@ -22,6 +23,10 @@ const isValidPw = (value) => {
     const pwReg = /^[a-zA-Z0-9]{8,16}$/
 
     return pwReg.test(value)
+}
+
+const isValidPwCheck = (value) => {
+    return value === pwEl.value
 }
 
 const getErrorIdMsg = (value) => {
@@ -46,6 +51,17 @@ const getErrorPwMsg = (value) => {
     return null
 }
 
+const getErrorPwCheckMsg = (value) => {
+    if (isEmptyString(value)) {
+        return '필수 정보입니다.'
+    }
+    if (!isValidPwCheck(value)) {
+        return '비밀번호가 일치하지 않습니다.'
+    }
+
+    return null
+}
+
 const handleIdBlur = (value) => {
     const errorMsg = getErrorIdMsg(value)
 
@@ -58,6 +74,12 @@ const handlePwBlur = (value) => {
     pwMsgEl.innerText = errorMsg
 }
 
+const handlePwCheckBlur = (value) => {
+    const errorMsg = getErrorPwCheckMsg(value)
+
+    pwCheckMsgEl.innerText = errorMsg
+}
+
 setFocus(idEl)
 
 idEl.onblur = () => {
@@ -66,4 +88,8 @@ idEl.onblur = () => {
 
 pwEl.onblur = () => {
     handlePwBlur(pwEl.value)
+}
+
+pwCheckEl.onblur = () => {
+    handlePwCheckBlur(pwCheckEl.value)
 }
