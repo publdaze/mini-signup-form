@@ -1,6 +1,7 @@
 const idEl = document.getElementById('id')
 const idMsgEl = document.getElementById('id-msg')
 const pwEl = document.getElementById('pw')
+const pwMsgEl = document.getElementById('pw-msg')
 const pwCheckEl = document.getElementById('pw-check')
 
 const setFocus = (el) => {
@@ -17,6 +18,12 @@ const isValidId = (value) => {
     return idReg.test(value)
 }
 
+const isValidPw = (value) => {
+    const pwReg = /^[a-zA-Z0-9]{8,16}$/
+
+    return pwReg.test(value)
+}
+
 const getErrorIdMsg = (value) => {
     if (isEmptyString(value)) {
         return '필수 정보입니다.'
@@ -28,14 +35,35 @@ const getErrorIdMsg = (value) => {
     return null
 }
 
+const getErrorPwMsg = (value) => {
+    if (isEmptyString(value)) {
+        return '필수 정보입니다.'
+    }
+    if (!isValidPw(value)) {
+        return '8~16자 영문 대 소문자, 숫자를 사용하세요.'
+    }
+
+    return null
+}
+
 const handleIdBlur = (value) => {
     const errorMsg = getErrorIdMsg(value)
 
     idMsgEl.innerText = errorMsg
 }
 
+const handlePwBlur = (value) => {
+    const errorMsg = getErrorPwMsg(value)
+
+    pwMsgEl.innerText = errorMsg
+}
+
 setFocus(idEl)
 
 idEl.onblur = () => {
-    handleBlur(idEl.value)
+    handleIdBlur(idEl.value)
+}
+
+pwEl.onblur = () => {
+    handlePwBlur(pwEl.value)
 }
