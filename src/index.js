@@ -1,1 +1,3 @@
-// TODO: 이 곳에 정답 코드를 작성해주세요.
+const idEl = document.getElementById('id')
+const pwEl = document.getElementById('pw')
+const pwCheckEl = document.getElementById('pw-check')
