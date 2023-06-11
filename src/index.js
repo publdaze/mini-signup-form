@@ -9,6 +9,7 @@ const dialogEl = document.getElementById('modal')
 const confirmIdEl = document.getElementById('confirm-id')
 const confirmPwEl = document.getElementById('confirm-pw')
 const cancelBtnEl = document.getElementById('cancel-btn')
+const approveBtnEl = document.getElementById('approve-btn')
 
 const setFocus = (el) => {
     el.focus()
@@ -135,4 +136,8 @@ formEl.addEventListener('submit', (e) => {
 
 cancelBtnEl.onclick = () => {
     dialogEl.close()
+}
+
+approveBtnEl.onclick = () => {
+    window.alert('가입되었습니다 🥳')
 }
