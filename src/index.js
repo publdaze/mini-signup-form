@@ -10,6 +10,8 @@ const confirmIdEl = document.getElementById('confirm-id')
 const confirmPwEl = document.getElementById('confirm-pw')
 const cancelBtnEl = document.getElementById('cancel-btn')
 const approveBtnEl = document.getElementById('approve-btn')
+const increaseFontBtnEl = document.getElementById('increase-font-btn')
+const decreaseFontBtnEl = document.getElementById('decrease-font-btn')
 
 const setFocus = (el) => {
     el.focus()
@@ -140,4 +142,20 @@ cancelBtnEl.onclick = () => {
 
 approveBtnEl.onclick = () => {
     window.alert('가입되었습니다 🥳')
+}
+
+increaseFontBtnEl.onclick = () => {
+    const fontSize = Number.parseInt(
+        window.getComputedStyle(formEl).fontSize,
+        10
+    )
+    document.documentElement.style.fontSize = fontSize + 1 + 'px'
+}
+
+decreaseFontBtnEl.onclick = () => {
+    const fontSize = Number.parseInt(
+        window.getComputedStyle(formEl).fontSize,
+        10
+    )
+    document.documentElement.style.fontSize = fontSize - 1 + 'px'
 }
