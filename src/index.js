@@ -63,36 +63,51 @@ const getErrorPwCheckMsg = (value) => {
     return null
 }
 
-const handleIdBlur = (value) => {
+const handleIdBlur = ({ value, classList }) => {
     const errorMsg = getErrorIdMsg(value)
 
+    if (errorMsg) {
+        classList.add('border-red-600')
+    } else {
+        classList.remove('border-red-600')
+    }
     idMsgEl.innerText = errorMsg
 }
 
-const handlePwBlur = (value) => {
+const handlePwBlur = ({ value, classList }) => {
     const errorMsg = getErrorPwMsg(value)
 
+    if (errorMsg) {
+        classList.add('border-red-600')
+    } else {
+        classList.remove('border-red-600')
+    }
     pwMsgEl.innerText = errorMsg
 }
 
-const handlePwCheckBlur = (value) => {
+const handlePwCheckBlur = ({ value, classList }) => {
     const errorMsg = getErrorPwCheckMsg(value)
 
+    if (errorMsg) {
+        classList.add('border-red-600')
+    } else {
+        classList.remove('border-red-600')
+    }
     pwCheckMsgEl.innerText = errorMsg
 }
 
 setFocus(idEl)
 
 idEl.onblur = () => {
-    handleIdBlur(idEl.value)
+    handleIdBlur(idEl)
 }
 
 pwEl.onblur = () => {
-    handlePwBlur(pwEl.value)
+    handlePwBlur(pwEl)
 }
 
 pwCheckEl.onblur = () => {
-    handlePwCheckBlur(pwCheckEl.value)
+    handlePwCheckBlur(pwCheckEl)
 }
 
 formEl.addEventListener('submit', (e) => {
@@ -100,12 +115,12 @@ formEl.addEventListener('submit', (e) => {
 
     if (!isValidId(idEl.value)) {
         setFocus(idEl)
-        handleIdBlur(idEl.value)
+        handleIdBlur(idEl)
     } else if (!isValidPw(pwEl.value)) {
         setFocus(pwEl)
-        handlePwBlur(pwEl.value)
+        handlePwBlur(pwEl)
     } else if (!isValidPwCheck(pwCheckEl.value)) {
         setFocus(pwCheckEl)
-        handlePwCheckBlur(pwCheckEl.value)
+        handlePwCheckBlur(pwCheckEl)
     }
 })
