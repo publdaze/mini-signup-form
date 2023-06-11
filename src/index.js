@@ -5,6 +5,9 @@ const pwMsgEl = document.getElementById('pw-msg')
 const pwCheckEl = document.getElementById('pw-check')
 const pwCheckMsgEl = document.getElementById('pw-check-msg')
 const formEl = document.getElementById('form')
+const dialogEl = document.getElementById('modal')
+const confirmIdEl = document.getElementById('confirm-id')
+const confirmPwEl = document.getElementById('confirm-pw')
 
 const setFocus = (el) => {
     el.focus()
@@ -122,5 +125,9 @@ formEl.addEventListener('submit', (e) => {
     } else if (!isValidPwCheck(pwCheckEl.value)) {
         setFocus(pwCheckEl)
         handlePwCheckBlur(pwCheckEl)
+    } else {
+        dialogEl.show()
+        confirmIdEl.textContent = idEl.value
+        confirmPwEl.textContent = pwEl.value
     }
 })
