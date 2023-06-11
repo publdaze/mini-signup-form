@@ -4,6 +4,7 @@ const pwEl = document.getElementById('pw')
 const pwMsgEl = document.getElementById('pw-msg')
 const pwCheckEl = document.getElementById('pw-check')
 const pwCheckMsgEl = document.getElementById('pw-check-msg')
+const formEl = document.getElementById('form')
 
 const setFocus = (el) => {
     el.focus()
@@ -93,3 +94,18 @@ pwEl.onblur = () => {
 pwCheckEl.onblur = () => {
     handlePwCheckBlur(pwCheckEl.value)
 }
+
+formEl.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    if (!isValidId(idEl.value)) {
+        setFocus(idEl)
+        handleIdBlur(idEl.value)
+    } else if (!isValidPw(pwEl.value)) {
+        setFocus(pwEl)
+        handlePwBlur(pwEl.value)
+    } else if (!isValidPwCheck(pwCheckEl.value)) {
+        setFocus(pwCheckEl)
+        handlePwCheckBlur(pwCheckEl.value)
+    }
+})
