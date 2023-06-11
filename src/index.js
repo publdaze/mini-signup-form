@@ -8,6 +8,7 @@ const formEl = document.getElementById('form')
 const dialogEl = document.getElementById('modal')
 const confirmIdEl = document.getElementById('confirm-id')
 const confirmPwEl = document.getElementById('confirm-pw')
+const cancelBtnEl = document.getElementById('cancel-btn')
 
 const setFocus = (el) => {
     el.focus()
@@ -131,3 +132,7 @@ formEl.addEventListener('submit', (e) => {
         confirmPwEl.textContent = pwEl.value
     }
 })
+
+cancelBtnEl.onclick = () => {
+    dialogEl.close()
+}
