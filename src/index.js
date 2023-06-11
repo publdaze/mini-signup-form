@@ -144,11 +144,16 @@ approveBtnEl.onclick = () => {
     window.alert('가입되었습니다 🥳')
 }
 
+const MIN_FONT_SIZE = 12
+const MAX_FONT_SIZE = 20
+
 increaseFontBtnEl.onclick = () => {
     const fontSize = Number.parseInt(
         window.getComputedStyle(formEl).fontSize,
         10
     )
+
+    increaseFontBtnEl.disabled = fontSize >= MAX_FONT_SIZE - 1 ? true : false
     document.documentElement.style.fontSize = fontSize + 1 + 'px'
 }
 
@@ -157,5 +162,7 @@ decreaseFontBtnEl.onclick = () => {
         window.getComputedStyle(formEl).fontSize,
         10
     )
+
+    decreaseFontBtnEl.disabled = fontSize <= MIN_FONT_SIZE + 1 ? true : false
     document.documentElement.style.fontSize = fontSize - 1 + 'px'
 }
